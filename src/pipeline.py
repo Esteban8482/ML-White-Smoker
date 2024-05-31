@@ -1,4 +1,5 @@
 from src.data_ingestion import DataIngestor
+from src.data_processing import DataProcessor
 
 def main():
     # Paths to data files
@@ -12,3 +13,10 @@ def main():
     train_df, test_df = data_ingestor.load_data()
     data_ingestor.initial_preprocessing()
     data_ingestor.save_data(processed_train_path, processed_test_path)
+    
+    # Procesamiento de datos
+    processor = DataProcessor(train_df, test_df)
+    processor.process(processed_train_path)
+
+if __name__ == '__main__':
+    main()
